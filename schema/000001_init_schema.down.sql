@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS ingredient;
+
+DROP TABLE IF EXISTS recipe;

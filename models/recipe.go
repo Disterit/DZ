@@ -1,14 +1,30 @@
 package models
 
+import "DZ/pkg/logger"
+
 type Recipe struct {
 	Id          int64  `json:"id" db:"id"`
-	Name        string `json:"name" db:"name"`
-	Author      string `json:"author" db:"author"`
+	Name        string `json:"name" db:"name" binding:"required"`
+	Author      string `json:"author" db:"author" binding:"required"`
 	Description string `json:"description" db:"description"`
 }
 
-type Ingredient struct {
-	Id       int64  `json:"id" db:"id"`
-	RecipeId int64  `json:"recipe_id" db:"recipe_id"`
-	Name     string `json:"name" db:"name"`
+type GetRecipe struct {
+	Recipe      Recipe
+	Ingredients []string
+}
+
+type UpdateRecipe struct {
+	Name        *string `json:"name" db:"name_recipe"`
+	Author      *string `json:"author" db:"author"`
+	Description *string `json:"description" db:"description"`
+}
+
+func (s *UpdateRecipe) Validate() error {
+	if s.Name == nil && s.Author == nil && s.Description == nil {
+		logger.Log.Error("either title or description must be provided")
+		return nil
+	}
+
+	return nil
 }

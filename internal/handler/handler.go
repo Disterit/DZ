@@ -18,17 +18,19 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	recipe := router.Group("/recipe")
 	{
-		recipe.POST("")
-		recipe.GET("")
-		recipe.PATCH("")
-		recipe.DELETE("")
+		recipe.POST("", h.CreateRecipe)
+		recipe.GET("", h.GetAllRecipes)
+		recipe.GET("/:id", h.GetRecipe)
+		recipe.PATCH("/:id", h.UpdateRecipe)
+		recipe.DELETE("/:id", h.DeleteRecipe)
 		ingredient := recipe.Group("/:id/ingredient")
 		{
-			ingredient.POST("")
-			ingredient.GET("")
-			ingredient.PATCH("")
-			ingredient.DELETE("")
+			ingredient.POST("", h.CreateIngredient)
+			ingredient.GET("", h.GetIngredient)
 		}
+
+		router.PATCH("/ingredient/:id", h.UpdateIngredient)
+		router.DELETE("/ingredient/:id", h.DeleteIngredient)
 	}
 
 	return router
