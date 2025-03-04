@@ -1,6 +1,6 @@
 port: ":8080"
 db:
-  port: "localhost"
+  port: "db"
   host: "5438"
   username: "postgres"
   database: "postgres"

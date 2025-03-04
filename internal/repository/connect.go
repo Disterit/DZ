@@ -4,6 +4,8 @@ import (
 	"DZ/pkg/logger"
 	"database/sql"
 	"fmt"
+
+	_ "github.com/lib/pq"
 )
 
 type Config struct {
