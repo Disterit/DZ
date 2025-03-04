@@ -26,7 +26,6 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		ingredient := recipe.Group("/:id/ingredient")
 		{
 			ingredient.POST("", h.CreateIngredient)
-			ingredient.GET("", h.GetIngredient)
 		}
 
 		router.PATCH("/ingredient/:id", h.UpdateIngredient)
